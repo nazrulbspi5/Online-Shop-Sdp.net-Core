@@ -1,0 +1,27 @@
+﻿@model OnlineShop.Models.SpecialTag
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h2 class="text-info">Delete Special Tag</h2>
+<hr />
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TagName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TagName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </form>
+</div>

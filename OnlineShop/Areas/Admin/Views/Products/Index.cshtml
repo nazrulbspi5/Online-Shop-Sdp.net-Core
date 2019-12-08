@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OnlineShop.Models.Products>
+@{
+    ViewData["Title"] = "Index";
+}
+<br /><br />
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="text-info">Product List</h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;New Product</a>
+    </div>
+</div>
+<div class="row">
+    <table class="table table-striped table-bordered">
+        <tr class="table-info">
+            <th>@Html.DisplayNameFor(c => c.Name)</th>
+            <th>@Html.DisplayNameFor(c => c.Price)</th>
+            <th>@Html.DisplayNameFor(c => c.ProductColor)</th>
+            <th>@Html.DisplayNameFor(c => c.IsAvailable)</th>
+            <th>@Html.DisplayNameFor(c => c.ProductTypeId)</th>
+            <th>@Html.DisplayNameFor(c => c.SpeciaTagId)</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.ProductColor</td>
+                <td>@item.IsAvailable</td>
+                <td>@item.ProductTypes.ProductType</td>
+                <td>@item.SpecialTag.TagName</td>
+                <td>
+                    <partial name="_ButtonPartial" model="@item.Id" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var save = '@TempData["saved"]'
+            if (save != "") {
+                alertify.success(save);
+            }
+        })
+    </script>
+}
+
+
